@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-// @RequestMapping("/admin/com/cctv")
-@RequestMapping("/admin/dat/cctv")
+@RequestMapping("/admin/com/cctv")
+// @RequestMapping("/admin/dat/cctv")
 @RequiredArgsConstructor
 public class CctvController {
 
