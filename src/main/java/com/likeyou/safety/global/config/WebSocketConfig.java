@@ -22,7 +22,12 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // WebSocket 연결 엔드포인트
         registry.addEndpoint("/ws")
-                .setAllowedOrigins("http://localhost:3000", "http://localhost:5173")
+                .setAllowedOrigins(
+                    "http://localhost:3000", 
+                    "http://localhost:5173",
+                    "https://likeyousafety.cloud",      // [추가] 프론트엔드 도메인
+                    "https://api.likeyousafety.cloud"   // [추가] 백엔드 도메인 (혹시 몰라 추가)
+                )
                 .withSockJS();
     }
 }
