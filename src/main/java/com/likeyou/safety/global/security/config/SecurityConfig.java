@@ -40,6 +40,7 @@ public class SecurityConfig {
             // URL별 권한 설정
             .authorizeHttpRequests(auth -> auth
                 // ✅ OPTIONS 요청 허용 (Preflight)
+
                 .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
                 // ✅ WebSocket 허용 추가
                 .requestMatchers("/ws/**").permitAll()
@@ -53,6 +54,10 @@ public class SecurityConfig {
                     "/admin/auth/approve",
                     "/admin/auth/list"
                 ).hasAnyRole("SYSTEM", "ADMIN")
+                // ✅ CCTV 관련 요청 허용
+                .requestMatchers("/admin/dat/cctv/status").authenticated()
+                .requestMatchers("/admin/dat/cctv/**").authenticated()
+                // 기존 설정들
                 .requestMatchers("/admin/com/**")
                     .hasAnyRole("SYSTEM", "ADMIN", "GOV")
                 .requestMatchers("/admin/dat/**")
