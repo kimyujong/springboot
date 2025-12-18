@@ -1,0 +1,83 @@
+server:
+  port: 8080
+
+### Spring ###
+spring:
+  application:
+    name: safety
+  
+  ai:
+    vectorstore:
+      pgvector:
+        enabled: false
+
+  autoconfigure:
+    exclude:
+      - org.springframework.ai.vectorstore.pgvector.autoconfigure.PgVectorStoreAutoConfiguration
+      - org.springframework.ai.autoconfigure.openai.OpenAiAutoConfiguration
+
+  datasource:
+    url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:5432/postgres
+    username: postgres.pvuucwvtvszmyfyxoomh
+    password: likeyou202507!@#
+    driver-class-name: org.postgresql.Driver
+
+### Hikari(DB pool size) ###
+    hikari:
+      maximum-pool-size: 3
+      minimum-idle: 1
+      idle-timeout: 30000
+      connection-timeout: 30000
+      max-lifetime: 30000
+
+### JPA ###
+  jpa:
+    hibernate:
+      ddl-auto: validate  # 개발단계: update / 운영단계: validate 로 변경
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+        globally_quoted_identifiers: true
+        physical_naming_strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+    show-sql: true
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.orm.jdbc.bind: trace
+
+### JWT ###
+jwt:
+  secret: "nPD3w7htZkH7xU2lxsK8qZgOCJblwY4rr8pMiK6Fq1E="
+  expiration: 3600000
+
+### Weather API ###
+weather:
+  api-key: 16d775a56d68dafe454cda1b4b0fb134
+  url: https://api.openweathermap.org/data/2.5/weather
+
+forecast:
+  service-key: "wXWFqoWmih9T8dmibXDmiKUHmGO+vXEZ2S9sQNSIP9M7XF5kTn0Id4soo+8e98ZPV65lg1BNtXwnBIGY8YWOyA=="
+  url: "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst"
+  nx: 98
+  ny: 76
+
+### FastAPI URL ###
+fastapi:
+  m1:
+    url: http://localhost:8001
+  m2:
+    url: http://localhost:8002
+  m3:
+    url: http://54.180.6.86:8003
+  m4:
+    url: http://localhost:8004
+  m5:
+    url: http://localhost:8005
