@@ -34,6 +34,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "build/libs/*.jar"
           target: "/home/ubuntu/springboot"
+          rm: true
           # strip_components: 2 # 필요 시 경로 제거 옵션 (build/libs 폴더 없이 jar만 넣고 싶을 때)
 
       # 5. EC2 접속해서 재시작
