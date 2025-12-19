@@ -42,7 +42,11 @@ jobs:
             
             # 파일 삭제 (이제 잡고 있는 프로세스가 없으니 지워짐)
             echo "🗑️ 기존 JAR 삭제..."
-            rm -rf /home/ubuntu/springboot/build/libs/*.jar
+            sudo rm -rf /home/ubuntu/springboot/build/libs/*.jar
+            
+            # [추가] 폴더 소유권을 다시 ubuntu로 돌려놓기 (전송받을 때 에러 방지)
+            sudo mkdir -p /home/ubuntu/springboot/build/libs
+            sudo chown -R ubuntu:ubuntu /home/ubuntu/springboot
 
       # 5. 파일 전송 (이제 방해꾼 없음)
       - name: Copy JAR to EC2
